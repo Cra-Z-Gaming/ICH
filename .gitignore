@@ -1,5 +1,5 @@
-# This project must use a new Firebase project. Never commit its live values.
-js/core/firebase-config.js
+# Firebase's browser configuration must be deployed with this static app. It is
+# public by design; database security must be enforced with Firebase rules.
 
 # Local editor and build output
 .vscode/

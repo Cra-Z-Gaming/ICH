@@ -1,0 +1,80 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "users": {
+      ".read": "auth != null",
+      "$id": {
+        ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)",
+        ".validate": "newData.hasChildren(['username','createdAt','provider']) && newData.child('username').isString() && newData.child('username').val().length > 0 && newData.child('username').val().length <= 20"
+      }
+    },
+
+    "counters": {
+      "userId": { ".read": "auth != null", ".write": "auth != null && newData.isNumber() && newData.val() === data.val() + 1" }
+    },
+    "uidToId": {
+      "$uid": { ".read": "auth != null && auth.uid === $uid", ".write": "auth != null && auth.uid === $uid && !data.exists() && newData.isNumber()" }
+    },
+    "idToUid": {
+      "$id": { ".read": false, ".write": "auth != null && !data.exists() && newData.val() === auth.uid" }
+    },
+    "usernames": {
+      ".read": "auth != null",
+      "$name": { ".write": "auth != null && ((!data.exists() && newData.val() === root.child('uidToId/'+auth.uid).val()) || (data.val() === root.child('uidToId/'+auth.uid).val() && !newData.exists()))" }
+    },
+    "usernameLogin": {
+      ".read": false,
+      "$name": { ".write": "auth != null && newData.child('email').isString()" }
+    },
+
+    "owners": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "admin": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "mods": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "vip": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "mvp": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "roles": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "flair": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "banned": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "muted": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "modSettings": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "appVersion": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "liveAnnouncement": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "reconnectRequest": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+
+    "tosAccepted": { "$id": { ".read": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "lastRead": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "pingSeen": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+
+    "messages": {
+      "$chat": {
+        ".read": "auth != null",
+        "$message": {
+          ".write": "auth != null && ((!data.exists() && newData.child('senderId').val() === root.child('uidToId/'+auth.uid).val()) || (data.child('senderId').val() === root.child('uidToId/'+auth.uid).val()) || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)",
+          ".validate": "!newData.exists() || (newData.child('senderId').isNumber() && newData.child('text').isString() && newData.child('text').val().length <= 4000 && newData.child('at').isNumber())"
+        }
+      }
+    },
+    "reactions": { "$chat": { ".read": "auth != null", "$message": { "$emoji": { "$id": { ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } } } } },
+    "typing": { "$chat": { ".read": "auth != null", "$id": { ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } } },
+    "onlineUsers": { ".read": "auth != null", "$id": { ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "sessions": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "presence": { "$chat": { ".read": "auth != null", "$id": { ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } } },
+
+    "friends": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "blocked": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "blockedBy": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
+    "friendRequests": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
+    "sentRequests": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
+    "rooms": { ".read": "auth != null", ".write": "auth != null" },
+    "userRooms": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
+    "roomMembers": { ".read": "auth != null", ".write": "auth != null" },
+    "dmMembers": { ".read": "auth != null", ".write": "auth != null" },
+
+    "halloween": { ".read": "auth != null", ".write": "auth != null" },
+    "voice": { ".read": "auth != null", ".write": "auth != null" },
+    "spinWin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
+    "lastSpin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } }
+  }
+}

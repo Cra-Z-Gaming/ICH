@@ -599,8 +599,9 @@ const DB=(()=>{
           }
         }
       }
+      // User profiles are readable by every signed-in member so chats can display
+      // names and styles. Never put an email address in this public profile.
       const rec={username,createdAt:Date.now()+SKEW,lastNameChange:0,provider};
-      if(email)rec.email=email;
       // ONE atomic write: username claim + profile + login lookup. The rules check they all match each other.
       try{
         await update(ref(rtdb),{

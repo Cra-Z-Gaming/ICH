@@ -20,8 +20,9 @@
      (10s safety timeout). Replaces the old static <script src> tags and js/early/load-styles.js. -->
 <script>
 (function(){
-  // Local-first: never silently execute the legacy repository's current code.
-  var RAW=new URL('./',location.href).href;
+  // This is our published source root. An absolute URL also lets launchers that
+  // write index.html into about:blank resolve every app file correctly.
+  var RAW="https://raw.githubusercontent.com/Cra-Z-Gaming/ICH/refs/heads/master/";
   var m=document.querySelector('meta[name="build-version"]');
   var Q=m&&m.content?"?v="+encodeURIComponent(m.content):"";
   var CSS=["01-base","02-now-playing","03-form-controls","04-layout-background","05-auth-home-basics","06-chat","07-modals-pickers","08-overlays-friends","09-game-hubs","10-profile-cropper-composer","11-glass-theme","12-vip-spin","13-auth-page","14-extras-menu","15-anti-lag","16-rules-modal","17-halloween","18-music-profile-cosmetics","19-mobile-sidebar","20-voice-channel","22-discord-look"];
