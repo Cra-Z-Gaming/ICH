@@ -594,7 +594,7 @@ const DB=(()=>{
             await update(ref(rtdb),{'counters/userId':n,['idToUid/'+n]:fbUser.uid,['uidToId/'+fbUser.uid]:n});
             id=n;
           }catch(e){
-            if(i===7)throw new Error('Could not reserve a user ID. Try again.');
+            if(i===7)throw new Error('Could not reserve a user ID ('+(e.code||e.message||'database write denied')+'). Check that the latest Realtime Database rules were published.');
             await sleep(150+Math.random()*250);
           }
         }

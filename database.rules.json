@@ -12,7 +12,7 @@
     },
 
     "counters": {
-      "userId": { ".read": "auth != null", ".write": "auth != null && newData.isNumber() && ((!data.exists() && newData.val() === 1) || (data.exists() && newData.val() === data.val() + 1))" }
+      "userId": { ".read": "auth != null", ".write": "auth != null && newData.isNumber() && newData.val() >= 1" }
     },
     "uidToId": {
       "$uid": { ".read": "auth != null && auth.uid === $uid", ".write": "auth != null && auth.uid === $uid && !data.exists() && newData.isNumber()" }
