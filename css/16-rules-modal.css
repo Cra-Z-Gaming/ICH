@@ -67,3 +67,10 @@
 .tos-decline:hover:not(:disabled){background:rgba(255,255,255,.06)}
 .tos-decline:disabled{opacity:.5;cursor:not-allowed}
 .tos-err{min-height:0;margin-top:8px;font-size:12.5px;font-weight:600;color:#ff9aa8;text-align:center}
+.tos-hero{display:flex;align-items:center;gap:15px;text-align:left;padding:23px 24px 20px;background:linear-gradient(135deg,#20274c,#4b3b78 52%,#7c4d88)}
+.tos-hero h2{font-size:23px;line-height:1.1;text-shadow:none}.tos-hero .rules-sub{margin-top:5px;line-height:1.35}
+.tos-shield{flex:0 0 46px;width:46px;height:46px;display:grid;place-items:center;border-radius:16px;color:#fff;font-size:26px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);box-shadow:0 8px 20px rgba(20,15,55,.25)}
+.tos-intro{margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+.tos-privacy{display:flex;gap:11px;align-items:flex-start;margin-top:13px;padding:12px 13px;border-radius:14px;background:rgba(78,204,166,.09);border:1px solid rgba(78,204,166,.23);color:#bff7df}
+.tos-privacy>span{font-size:18px}.tos-privacy b{display:block;font-size:13px;color:#d8ffed}.tos-privacy small{display:block;margin-top:2px;color:#a8d7c4;font-size:12px;line-height:1.4}
+@media(max-width:420px){.tos-hero{padding:20px 18px}.tos-hero h2{font-size:21px}.rules-body{padding:16px}.tos-shield{flex-basis:42px;width:42px;height:42px}}

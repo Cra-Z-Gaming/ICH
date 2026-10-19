@@ -47,7 +47,7 @@ $('#formUp').onsubmit=async e=>{
     const user=await DB.createUser({username:u,email:em,password:p});
     // show the popup RIGHT AWAY; sign-out happens quietly in the background
     $('#formUp').reset();$('#upUserHint').textContent='';
-    authTab('in');$('#inId').value=user.username;$('#inPw').value='';
+    authTab('in');$('#inId').value=em;$('#inPw').value='';
     modalSignupSuccess(user,!!em);
     DB.signOut().catch(()=>{});
   }catch(err){$('#upErr').textContent=err.message}

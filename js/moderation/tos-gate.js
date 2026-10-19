@@ -33,12 +33,15 @@ function modalTos(){
   const root=$('#modalRoot');if(!root)return;
   const accepted=TOS_GATE.accepted===true;
   root.innerHTML='<div class="modal-bg" id="tosBg"><div class="modal rules-modal" role="dialog" aria-modal="true" aria-label="Terms of Service">'
-    +'<button class="modal-x" id="tosX" type="button">✕</button><h2>Terms of Service</h2>'
-    +'<div class="rules-list"><div class="rule"><b>Be respectful</b><p>No harassment, threats, spam, or impersonation.</p></div>'
-    +'<div class="rule"><b>Keep it safe</b><p>Do not post illegal, sexual, or harmful content.</p></div>'
-    +'<div class="rule"><b>Account moderation</b><p>Accounts may be muted or banned for breaking these rules.</p></div>'
-    +'<div class="rule"><b>Your privacy</b><p>This app does not collect or check your IP address, VPN, proxy, or network identity.</p></div></div>'
-    +(accepted?'<button class="rules-ok" id="tosClose" type="button">Close</button>':'<label class="rules-agree"><input type="checkbox" id="tosChk"> I have read and agree to these terms.</label><div class="tos-err" id="tosErr"></div><button class="rules-ok" id="tosOk" type="button" disabled>Accept &amp; allow chat</button>')
+    +'<button class="modal-x" id="tosX" type="button">✕</button>'
+    +'<div class="rules-hero tos-hero"><div class="tos-shield">✦</div><div><h2>Community guidelines</h2><div class="rules-sub">A shared space for chat, rooms, and VUS tools</div></div></div>'
+    +'<div class="rules-body"><div class="tos-intro">Keep conversations welcoming, respect other people, and use the app responsibly.</div>'
+    +'<div class="rule-card"><span class="rule-ic">🤝</span><div><div class="rule-t">Treat people well</div><div class="rule-d">No harassment, threats, bullying, impersonation, or targeted spam.</div></div></div>'
+    +'<div class="rule-card"><span class="rule-ic">🛡️</span><div><div class="rule-t">Keep it safe</div><div class="rule-d">Do not share illegal, sexual, or harmful content. Follow the rules of the spaces you open.</div></div></div>'
+    +'<div class="rule-card"><span class="rule-ic">⚖️</span><div><div class="rule-t">Account moderation</div><div class="rule-d">Accounts can be muted or banned when these guidelines are broken.</div></div></div>'
+    +'<div class="tos-privacy"><span>🔒</span><div><b>Privacy by design</b><small>This app does not check or store your IP address, VPN, proxy, or network identity.</small></div></div>'
+    +(accepted?'<button class="rules-ok" id="tosClose" type="button">Close</button>':'<label class="rules-agree"><input type="checkbox" id="tosChk"> I’ve read and agree to the community guidelines.</label><div class="tos-err" id="tosErr"></div><button class="rules-ok" id="tosOk" type="button" disabled>Agree &amp; start chatting</button>')
+    +'</div>'
     +'</div></div>';
   const close=()=>{root.innerHTML='';tosUiSync()};
   $('#tosX').onclick=close;$('#tosBg').onclick=e=>{if(e.target.id==='tosBg')close()};

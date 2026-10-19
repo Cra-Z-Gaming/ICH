@@ -568,9 +568,9 @@ const DB=(()=>{
     async createUser({username,email,password}){
       if(!CFG.USERNAME_RE.test(username))throw new Error('Username must be 1-20 chars using 0-9, a-z, A-Z, ".", "_" or "-".');
       if(!usernameAllowed(username))throw new Error('That username isn\'t allowed.');
-      if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))throw new Error('Please enter a real email address.');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))throw new Error('Please enter a real email address.');
       let cred;
-      try{cred=await createUserWithEmailAndPassword(auth,email||(username.toLowerCase()+FAKE),password)}
+      try{cred=await createUserWithEmailAndPassword(auth,email,password)}
       catch(e){throw new Error(authMsg(e))}
       // now signed in: safe to check the username
       if(!(await this.checkUsernameFree(username))){
@@ -579,7 +579,7 @@ const DB=(()=>{
       }
       try{await this._finishProfile(cred.user,username,email||null,'password')}
       catch(e){try{await deleteUser(cred.user)}catch(_){}throw e}
-      if(email){try{await sendEmailVerification(cred.user)}catch(_){}}
+      try{await sendEmailVerification(cred.user)}catch(_){}
       return this.currentUser();
     },
     // Claims the next ID, then writes uidToId -> usernames -> users (order required by the rules)
@@ -630,18 +630,7 @@ const DB=(()=>{
     },
     async login(idf,password){
       let email=idf.trim();
-      if(!email.includes('@')){
-        // username login: look up ID, then the account's email
-        let rec;
-        try{rec=(await get(R('usernameLogin/'+email.toLowerCase()))).val()}
-        catch(e){
-          throw new Error(e.code==='PERMISSION_DENIED'
-            ?'Username sign-in is unavailable right now (database rules block the lookup). Try signing in with your email instead.'
-            :'Could not look up that username: '+(e.code||e.message));
-        }
-        if(!rec)throw new Error('Incorrect username/email or password.');
-        email=rec.email||(email.toLowerCase()+FAKE);
-      }
+      if(!email.includes('@'))throw new Error('Sign in with the email address you used when creating your account.');
       try{await signInWithEmailAndPassword(auth,email,password)}
       catch(e){throw new Error(authMsg(e))}
       await new Promise(r=>setTimeout(r,0));   // let onAuthStateChanged fire
