@@ -6,7 +6,7 @@
 <!-- Bump this string every time you edit and re-publish this file. Connected
      clients poll for a change here and auto-refresh once a new version is live,
      so nobody stays on stale code after a deploy. -->
-<meta name="build-version" content="2026-10-18.04">
+<meta name="build-version" content="2026-10-18.05">
 <title>VUS Chat Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
@@ -338,6 +338,10 @@
         <div class="charcount"><span id="cc">0</span><span id="ccMax">/2000</span></div>
       </div>
     </section>
+    <aside class="vch-members" id="vchMembers" aria-label="Members">
+      <div class="vch-members-head"><b>VUS Members</b><span id="vchMemberCount"></span></div>
+      <div class="vch-members-list" id="vchMembersList"></div>
+    </aside>
   </div>
 </div>
 

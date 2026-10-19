@@ -59,6 +59,7 @@ window.APP_MANIFEST={
     "games/game-hubs.js",
     "chat/chat-view.js",
     "social/user-profile.js",
+    "ui/member-list.js",
     "chat/chat-header.js",
     "chat/messages.js",
     "chat/emoji-picker.js",

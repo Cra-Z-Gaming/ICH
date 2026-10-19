@@ -159,6 +159,7 @@ function renderChat(){
     $('#addFr').onclick=modalAddFriend;
   }
   renderMain();
+  if(typeof MemberList!=='undefined')MemberList.render();
   if(typeof DiscordShell!=='undefined')DiscordShell.refresh();
 }
 function addHTML(parent,html){const t=document.createElement('template');t.innerHTML=html.trim();parent.appendChild(t.content)}
