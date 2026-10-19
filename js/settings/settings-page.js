@@ -81,14 +81,14 @@ function openSettings(fromChat){
     </div>
 
     <div data-p="ui" class="hidden">
-      <div class="set-card hidden">
-        <div class="section-h" style="margin-top:0">Legacy layout</div>
+      <div class="set-card">
+        <div class="section-h" style="margin-top:0">Discord look</div>
         <div class="toggle-row" style="margin-bottom:0">
           <div>
             <div style="font-weight:600;font-size:14px">Discord look</div>
             <div class="hint" style="margin-top:2px">Off by default. Makes the whole site feel like Discord: it opens straight into your DMs, with a server-style bar on the left, a Friends page, a user panel, flat panels and plain message rows instead of chat bubbles. The main-menu ad is hidden and your custom background is covered while it's on. Saved to your account, so it follows you to every device.</div>
           </div>
-          <label class="switch"><input type="checkbox" disabled><span class="slider"></span></label>
+          <label class="switch"><input type="checkbox" id="sDiscordLook" ${DiscordLook.on()?'checked':''}><span class="slider"></span></label>
         </div>
         <div style="margin-top:12px"><button type="button" class="btn sec small" id="sLookAsk">Choose Normal or Discord again…</button></div>
       </div>
@@ -842,6 +842,7 @@ function openSettings(fromChat){
     s.bgBlur=+$$('#sBlur').value;s.bgDim=+$$('#sDim').value;
     s.uiOpacity=+$$('#sUiO').value;s.uiBlur=+$$('#sUiB').value;
     s.autoScrollBottom=$$('#sAutoScroll').checked;
+    s.discordLook=DiscordLook.on();
     s.antiLag=AntiLag.on();   // keep the Save payload in step with the toggle (it saves itself instantly)
     s.filterLocal=$$('#sFilterLocal').checked;
     s.pings={everyone:$$('#sPe').checked,sound:$$('#sPs').checked,desktop:$$('#sPd').checked};
@@ -912,6 +913,7 @@ function openSettings(fromChat){
   }
   // Anti-lag is an account setting (synced across devices); applied instantly and saved straight away.
   $$('#sAntiLag').addEventListener('change',e=>AntiLag.set(e.target.checked));
+  $$('#sDiscordLook').addEventListener('change',e=>DiscordLook.set(e.target.checked));
   // Flipping this on has to ask the browser for permission right here, inside the click
   // handler — browsers require a real user gesture for the prompt to reliably show at all,
   // and this is the ONLY place in the app permission is ever requested (see the notes above

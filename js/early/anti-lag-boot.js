@@ -6,3 +6,8 @@ try{
     document.documentElement.classList.add('anti-lag');
   }
 }catch(_){}
+try{
+  if(localStorage.getItem('vch.discordLook')==='1'){
+    document.documentElement.classList.add('discord-look');
+  }
+}catch(_){}

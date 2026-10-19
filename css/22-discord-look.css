@@ -1,0 +1,52 @@
+/* Settings navigation, plus the optional Discord-inspired visual theme. */
+#sTabs .dl-set-user,#sTabs .dl-set-search,#sTabs .dl-set-h,#sTabs .dl-set-sep{display:none}
+#sTabs .dl-e{display:none}
+
+html.discord-look{
+  --bg:#313338;--bg2:#2b2d31;--panel:#313338;--panel2:#2b2d31;
+  --ui-bg:#313338;--ui-bg2:#2b2d31;--ui-panel:#313338;
+  --text:#f2f3f5;--muted:#b5bac1;--accent:#5865f2;--accent2:#949cf7;
+}
+html.discord-look .bgfx,html.discord-look .bgfx .layer{background:#313338!important}
+html.discord-look .sidebar,html.discord-look .topbar,html.discord-look .composer,
+html.discord-look .modal,html.discord-look .set-card{
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  box-shadow:none!important;border-color:#1e1f22!important;
+}
+html.discord-look .bubble{border-radius:8px}
+html.discord-look .btn,html.discord-look .send,html.discord-look .tabs button.active,
+html.discord-look .modal-tabs button.active{box-shadow:none!important}
+
+html.discord-look #sTabs{
+  display:flex;flex-wrap:wrap;gap:4px;background:#2b2d31!important;
+  padding:8px;border-radius:8px;margin:16px 0;
+}
+html.discord-look #sTabs .dl-set-user{
+  display:flex;align-items:center;gap:10px;flex:1 1 210px;padding:7px 9px;
+  color:#f2f3f5;cursor:pointer;border-radius:6px;min-width:0;
+}
+html.discord-look #sTabs .dl-set-user:hover{background:#35373c}
+html.discord-look .dl-set-av{display:block;flex:none}
+html.discord-look .dl-set-nm{display:flex;min-width:0;flex-direction:column;line-height:1.2}
+html.discord-look .dl-set-nm b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
+html.discord-look .dl-set-nm small{color:#b5bac1;font-size:11px;margin-top:3px;display:flex;gap:4px;align-items:center}
+html.discord-look #sTabs .dl-set-search{display:block;flex:1 1 170px;padding:7px}
+html.discord-look #sTabs .dl-set-search input{
+  width:100%;height:34px;border:0;border-radius:5px;background:#1e1f22;color:#f2f3f5;padding:0 10px;outline:none;
+}
+html.discord-look #sTabs .dl-set-h{display:block;flex-basis:100%;padding:7px 8px 2px;color:#b5bac1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+html.discord-look #sTabs .dl-set-sep{display:block;flex-basis:100%;height:1px;background:#1e1f22;margin:4px 8px}
+html.discord-look #sTabs button{flex:0 1 auto;display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:5px;color:#b5bac1}
+html.discord-look #sTabs button:hover{background:#35373c;color:#f2f3f5}
+html.discord-look #sTabs button.active{background:#404249!important;color:#fff}
+html.discord-look #sTabs .dl-e{display:inline;font-style:normal}
+html.discord-look .dl-si{display:none}
+html.discord-look .dl-set-x{position:absolute;right:14px;top:14px;background:transparent;color:#b5bac1;border:0;font-size:20px}
+html.discord-look .dl-set-x:hover{color:#fff}
+html.discord-look .dl-hide{display:none!important}
+
+@media(max-width:620px){
+  html.discord-look #sTabs{display:block;max-height:46vh;overflow:auto}
+  html.discord-look #sTabs .dl-set-user,html.discord-look #sTabs .dl-set-search{margin-bottom:4px}
+  html.discord-look #sTabs button{width:100%;text-align:left}
+}
