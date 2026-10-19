@@ -9,28 +9,9 @@
 $('#ccClose').onclick=cancelCompose;
 
 /* Images */
-/* "+" button: with Discord look it opens a small menu (Upload a File);
-   with it off it still opens the image picker directly, like before. */
-const plusMenu=$('#plusMenu');
-const dlOn=()=>typeof DiscordLook!=='undefined'&&DiscordLook.on();
-function closePlusMenu(){if(plusMenu)plusMenu.classList.add('hidden');$('#attachBtn').setAttribute('aria-expanded','false')}
-$('#attachBtn').onclick=e=>{
-  if(!dlOn()||!plusMenu){$('#fileIn').click();return}
-  e.stopPropagation();
-  const open=plusMenu.classList.contains('hidden');
-  plusMenu.classList.toggle('hidden',!open);
-  $('#attachBtn').setAttribute('aria-expanded',open?'true':'false');
-};
-document.addEventListener('click',e=>{
-  if(!plusMenu||plusMenu.classList.contains('hidden'))return;
-  if(e.target.closest&&(e.target.closest('#plusMenu')||e.target.closest('#attachBtn')))return;
-  closePlusMenu();
-});
-// capture phase + preventDefault so the global Escape handler doesn't also leave the chat
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'&&plusMenu&&!plusMenu.classList.contains('hidden')){e.preventDefault();e.stopPropagation();closePlusMenu()}
-},true);
-$('#plusUpload').onclick=()=>{closePlusMenu();$('#fileIn').click()};
+/* Image button always opens the picker directly.  The old intermediate menu
+   was only visual chrome and looked like an empty white bar in some themes. */
+$('#attachBtn').onclick=()=>$('#fileIn').click();
 
 $('#emojiBtn').onclick=()=>{
   openEmojiPicker($('#emojiBtn'),emoji=>{
