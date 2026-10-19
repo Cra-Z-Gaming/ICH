@@ -119,7 +119,7 @@ function wantsProfilePopout(){
   if(!dlProfileOn()||!window.matchMedia('(min-width:821px)').matches)return false;
   const c=lastProfileClick;if(!c||Date.now()-c.t>700||!c.el||!c.el.closest)return false;
   if(c.el.closest('.dl-fr,.dlp-full'))return false;                 // Friends page rows + "View Full Profile" go to the full card
-  return !!c.el.closest('#messages,#dlMembers');
+  return !!c.el.closest('#messages,#dlMembers,#vchMembers');
 }
 function openProfilePopout(id){
   const u=DB.getUser(id);if(!u||!ME)return false;
