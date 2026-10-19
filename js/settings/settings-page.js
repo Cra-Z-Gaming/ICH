@@ -1,6 +1,6 @@
 /* ==========================================================================
  * js/settings/settings-page.js
- * Settings page (Theme, Music, Pings, Hubs & Tools, Moderation, ...)
+ * Settings page (Theme, Pings, Hubs & Tools, Moderation, ...)
  * Loaded by js/loader.js (load order lives in js/manifest.js).
  * All js files share one global scope, so functions/consts here are visible to the others.
  * ========================================================================== */
@@ -30,7 +30,6 @@ function openSettings(fromChat){
       <button data-t="bg" class="dl-hide"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m21 16-5-5-9 9"/></svg><i class="dl-e">🖼️ </i>Background</button>
       <button data-t="ui"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .8-1.7 1.8-1.7H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></svg><i class="dl-e">🎨 </i>Theme</button>
       <button data-t="ping"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg><i class="dl-e">🔔 </i>Pings</button>
-      <button data-t="music"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l11-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg><i class="dl-e">🎵 </i>Music</button>
       <button data-t="filter"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m5.7 5.7 12.6 12.6"/></svg><i class="dl-e">🚫 </i>Filter</button>
       <div class="dl-set-sep"></div><div class="dl-set-h">App</div>
       <button data-t="about"><svg class="dl-si" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg><i class="dl-e">ℹ️ </i>About</button>
@@ -82,8 +81,8 @@ function openSettings(fromChat){
     </div>
 
     <div data-p="ui" class="hidden">
-      <div class="set-card">
-        <div class="section-h" style="margin-top:0">💬 Discord look</div>
+      <div class="set-card hidden">
+        <div class="section-h" style="margin-top:0">Legacy layout</div>
         <div class="toggle-row" style="margin-bottom:0">
           <div>
             <div style="font-weight:600;font-size:14px">Discord look</div>
@@ -93,7 +92,7 @@ function openSettings(fromChat){
         </div>
         <div style="margin-top:12px"><button type="button" class="btn sec small" id="sLookAsk">Choose Normal or Discord again…</button></div>
       </div>
-      <div class="set-card dl-only" id="dlThemeCard">
+      <div class="set-card hidden" id="dlThemeCard">
         <div class="section-h" style="margin-top:0">🎨 Theme</div>
         <div class="dl-sub" style="margin-top:0">Default Themes</div>
         <div class="dl-themes" id="dlDefaultThemes">${DiscordLook.themes().filter(t=>t.group==='default').map(t=>`<button type="button" class="dl-sw${DiscordLook.theme()===t.id?' active':''}" data-dl-theme="${t.id}" title="${esc(t.name)}" aria-label="${esc(t.name)} theme"><span class="dl-sw-c" style="background:${t.sw}"></span><span class="dl-sw-l">${esc(t.name)}</span></button>`).join('')}</div>
@@ -142,37 +141,6 @@ function openSettings(fromChat){
           </div>
           <label class="switch"><input type="checkbox" id="sPd" ${s.pings.desktop?'checked':''}><span class="slider"></span></label>
         </div>
-      </div>
-    </div>
-
-    <div data-p="music" class="hidden">
-      <div class="set-card">
-        <div class="section-h" style="margin-top:0">🎵 Background music</div>
-        <div class="toggle-row" style="margin-bottom:14px">
-          <div>
-            <div style="font-weight:600;font-size:14px">Play music while chatting</div>
-            <div class="hint" style="margin-top:2px">Free music streamed from Jamendo.</div>
-          </div>
-          <label class="switch"><input type="checkbox" id="sMusicOn" ${s.music&&s.music.enabled?'checked':''}><span class="slider"></span></label>
-        </div>
-        <div class="toggle-row" style="margin-bottom:14px">
-          <div>
-            <div style="font-weight:600;font-size:14px">Keep playing in the background</div>
-            <div class="hint" style="margin-top:2px">Off: music fades out when you switch tabs or apps, and fades back in when you return.</div>
-          </div>
-          <label class="switch"><input type="checkbox" id="sMusicBg" ${MusicPlayer.getBackground()?'checked':''}><span class="slider"></span></label>
-        </div>
-        <div class="music-search">
-          <div class="ms-box">
-            <svg class="ms-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-            <input type="text" id="mQuery" placeholder="Search songs, artists or moods..." maxlength="60" autocomplete="off" spellcheck="false" enterkeyhint="search">
-            <button type="button" class="ms-clear" id="mClear" aria-label="Clear search">✕</button>
-          </div>
-          <button type="button" class="btn ms-go" id="mGo"><span class="ms-spin"></span>Search</button>
-        </div>
-        <div class="music-chips" id="mChips"></div>
-        <div id="musicWidget"></div>
-        <div class="music-credit">Music via <a href="https://www.jamendo.com" target="_blank" rel="noopener">Jamendo</a></div>
       </div>
     </div>
 
@@ -874,11 +842,9 @@ function openSettings(fromChat){
     s.bgBlur=+$$('#sBlur').value;s.bgDim=+$$('#sDim').value;
     s.uiOpacity=+$$('#sUiO').value;s.uiBlur=+$$('#sUiB').value;
     s.autoScrollBottom=$$('#sAutoScroll').checked;
-    s.discordLook=DiscordLook.on();
     s.antiLag=AntiLag.on();   // keep the Save payload in step with the toggle (it saves itself instantly)
     s.filterLocal=$$('#sFilterLocal').checked;
     s.pings={everyone:$$('#sPe').checked,sound:$$('#sPs').checked,desktop:$$('#sPd').checked};
-    s.music={enabled:$$('#sMusicOn').checked,volume:musicWidgetVolume(),shuffle:s.music&&s.music.shuffle!==false};
   }
   $$('#sFontUp').onclick=()=>$$('#sFontFile').click();
   $$('#sFontFile').onchange=async e=>{
@@ -944,22 +910,8 @@ function openSettings(fromChat){
     applyStyle(document.documentElement,s);
     refitAllAvatars();
   }
-  $$('#sMusicOn').addEventListener('change',()=>{
-    preview();
-    if(s.music.enabled)MusicPlayer.play();else MusicPlayer.pause();
-  });
-  // Background play is a per-device choice kept in localStorage (no database field / rule change needed).
-  $$('#sMusicBg').addEventListener('change',e=>MusicPlayer.setBackground(e.target.checked));
   // Anti-lag is an account setting (synced across devices); applied instantly and saved straight away.
   $$('#sAntiLag').addEventListener('change',e=>AntiLag.set(e.target.checked));
-  $$('#sDiscordLook').addEventListener('change',e=>DiscordLook.set(e.target.checked));
-  $$('#sLookAsk')&&($$('#sLookAsk').onclick=()=>DiscordLook.ask());
-  $$('#dlThemeCard')&&$$('#dlThemeCard').addEventListener('click',e=>{
-    const b=e.target.closest('[data-dl-theme]');if(!b)return;
-    DiscordLook.setTheme(b.dataset.dlTheme);
-    $$('#dlThemeCard').querySelectorAll('[data-dl-theme]').forEach(x=>x.classList.toggle('active',x===b));
-    const nm=$$('#dlThemeName');if(nm)nm.textContent=b.title;
-  });
   // Flipping this on has to ask the browser for permission right here, inside the click
   // handler — browsers require a real user gesture for the prompt to reliably show at all,
   // and this is the ONLY place in the app permission is ever requested (see the notes above
@@ -989,12 +941,10 @@ function openSettings(fromChat){
     }catch(_){$$('#fileTxt').textContent='❌ Could not load that image'}
     preview();
   };
-  const closeRevert=()=>{if(musicUnsub)musicUnsub();if(musicTimeUnsub)musicTimeUnsub();closeModalAnimated(root,()=>{applyStyle(document.documentElement,ME.settings);refitAllAvatars();MusicPlayer.applyPrefs(ME.settings.music)})};
+  const closeRevert=()=>{closeModalAnimated(root,()=>{applyStyle(document.documentElement,ME.settings);refitAllAvatars()})};
   $$('#sCancel').onclick=closeRevert;
   $$('#sX').onclick=closeRevert;
-  // Discord look: the profile card at the top of the nav opens your account/profile (settings are reverted first, like Cancel)
-  const goAccount=()=>{if(musicUnsub)musicUnsub();if(musicTimeUnsub)musicTimeUnsub();closeModalAnimated(root,()=>{applyStyle(document.documentElement,ME.settings);refitAllAvatars();MusicPlayer.applyPrefs(ME.settings.music);openAccount()})};
-  const t0=root.querySelector('#sTitle');if(t0&&typeof DiscordLook!=='undefined'&&DiscordLook.on())t0.textContent='Messages';
+  const goAccount=()=>{closeModalAnimated(root,()=>{applyStyle(document.documentElement,ME.settings);refitAllAvatars();openAccount()})};
   const prof=root.querySelector('#sProfile');
   if(prof){prof.onclick=goAccount;prof.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goAccount()}}}
   const srch=root.querySelector('#sSearch');
@@ -1004,12 +954,10 @@ function openSettings(fromChat){
     root.querySelectorAll('#sTabs .dl-set-h,#sTabs .dl-set-sep').forEach(h=>{h.style.display=q?'none':''});
   });
   $$('#sReset').onclick=()=>{
-    Object.assign(s,{meBubble:'#7c6cff',meText:'#ffffff',radius:16,font:'system',customFont:'',size:15,bold:false,italic:false,bgType:'gradient',bgColor:'#2a1f5c',bgColor2:'#7c2f66',bgImage:'',bgFit:'cover',bgBlur:0,bgDim:30,uiOpacity:50,uiBlur:18,autoScrollBottom:true,filterLocal:true,pings:{everyone:true,sound:true,desktop:true},music:{enabled:true,volume:15,shuffle:true}});
-    if(musicUnsub)musicUnsub();if(musicTimeUnsub)musicTimeUnsub();
-    MusicPlayer.setBackground(false);
+    Object.assign(s,{meBubble:'#7c6cff',meText:'#ffffff',radius:16,font:'system',customFont:'',size:15,bold:false,italic:false,bgType:'gradient',bgColor:'#2a1f5c',bgColor2:'#7c2f66',bgImage:'',bgFit:'cover',bgBlur:0,bgDim:30,uiOpacity:50,uiBlur:18,autoScrollBottom:true,filterLocal:true,pings:{everyone:true,sound:true,desktop:true}});
     DB.updateSettings(ME.id,s).catch(()=>{});
     ME=DB.currentUser();
-    closeModalAnimated(root,()=>{applyStyle(document.documentElement,s);refitAllAvatars();MusicPlayer.applyPrefs(s.music);toast('Settings reset.')});
+    closeModalAnimated(root,()=>{applyStyle(document.documentElement,s);refitAllAvatars();toast('Settings reset.')});
   };
   $$('#sSave').onclick=async()=>{
     read();
@@ -1018,9 +966,9 @@ function openSettings(fromChat){
     const b=$$('#sSave');b.disabled=true;b.textContent='Saving...';
     try{
       await DB.updateSettings(ME.id,s);
-      ME=DB.currentUser();if(musicUnsub)musicUnsub();if(musicTimeUnsub)musicTimeUnsub();
+      ME=DB.currentUser();
       closeModalAnimated(root,()=>{
-        applyStyle(document.documentElement,ME.settings);MusicPlayer.applyPrefs(ME.settings.music);toast('Saved!');
+        applyStyle(document.documentElement,ME.settings);toast('Saved!');
         // Re-render the message list immediately so a filter toggle change (or any other
         // setting affecting how messages are displayed) applies to already-loaded messages
         // right away, instead of waiting for the next unrelated re-render.

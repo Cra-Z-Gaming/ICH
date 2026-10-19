@@ -6,11 +6,10 @@
 <!-- Bump this string every time you edit and re-publish this file. Connected
      clients poll for a change here and auto-refresh once a new version is live,
      so nobody stays on stale code after a deploy. -->
-<meta name="build-version" content="2026-10-18.01">
-<title>ICH + VUS</title>
+<meta name="build-version" content="2026-10-18.02">
+<title>VUS Chat Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
-<link rel="icon" type="image/png" href="https://aniitsukicoded.github.io/backups/icon.png">
 <!-- RAW-LINK BOOTSTRAP: everything (css + js) is loaded from raw.githubusercontent.com.
      raw links are served as text/plain, which browsers refuse to run/apply through
      <script src> / <link rel=stylesheet>, so each file is fetched as text and handed to the
@@ -25,9 +24,9 @@
   var RAW="https://raw.githubusercontent.com/Cra-Z-Gaming/ICH/refs/heads/master/";
   var m=document.querySelector('meta[name="build-version"]');
   var Q=m&&m.content?"?v="+encodeURIComponent(m.content):"";
-  var CSS=["01-base","02-now-playing","03-form-controls","04-layout-background","05-auth-home-basics","06-chat","07-modals-pickers","08-overlays-friends","09-game-hubs","10-profile-cropper-composer","11-glass-theme","12-vip-spin","13-auth-page","14-extras-menu","15-anti-lag","16-rules-modal","17-halloween","18-music-profile-cosmetics","19-mobile-sidebar","20-voice-channel","22-discord-look"];
+  var CSS=["01-base","03-form-controls","04-layout-background","05-auth-home-basics","06-chat","07-modals-pickers","08-overlays-friends","09-game-hubs","10-profile-cropper-composer","11-glass-theme","12-vip-spin","13-auth-page","14-extras-menu","15-anti-lag","16-rules-modal","17-halloween","18-music-profile-cosmetics","19-mobile-sidebar"];
   var JS=["js/loader.js","js/manifest.js"];
-  var STATIC_LATE=["js/ui/auth-card-motion.js","js/games/hub-info.js","js/games/auth-hubs-preview.js","js/ui/ad-copy.js","js/core/crash-catcher.js","js/loader.js","js/ui/extras-download-launcher.js","js/ui/mobile-sidebar.js","js/features/voice-channel.js"];
+  var STATIC_LATE=["js/ui/auth-card-motion.js","js/games/hub-info.js","js/games/auth-hubs-preview.js","js/core/crash-catcher.js","js/loader.js","js/ui/extras-download-launcher.js","js/ui/mobile-sidebar.js"];
 
   var hide=document.createElement("style");
   hide.id="css-boot-hide";hide.textContent="html{visibility:hidden}";
@@ -138,7 +137,7 @@
 <div id="loadingPage" class="page">
   <div class="card loading-card">
     <div class="spinner-wrap"><div class="spinner-glow"></div><div class="spinner"></div></div>
-    <div class="logo" style="margin:16px 0 4px">Itsukis Chat Hub</div>
+    <div class="logo" style="margin:16px 0 4px">VUS Chat Hub</div>
     <div class="hint" id="loadingHint">Connecting...</div>
     <button class="btn sec small hidden" id="loadingRetry" style="margin-top:16px">Reload</button>
   </div>
@@ -149,7 +148,7 @@
   <div class="auth-shell">
 
     <section class="auth-hero">
-      <div class="logo" aria-label="Itsukis Chat Hub"><span class="ln"><span>Itsukis</span></span><span class="ln"><span>Chat Hub</span></span></div>
+      <div class="logo" aria-label="VUS Chat Hub"><span class="ln"><span>VUS</span></span><span class="ln"><span>Chat Hub</span></span></div>
       <p class="lede">Chat globally, in rooms, or privately.</p>
       <div class="auth-preview" aria-hidden="true">
         <div class="pv-row" style="--i:0"><span class="pv-av" style="--g:linear-gradient(135deg,#ff7a8e,#e84b68)">V</span>
@@ -168,7 +167,7 @@
 
     <div class="auth-col">
     <div class="card auth-card" id="authCard" data-tab="in" data-thumb="in">
-      <div class="auth-mobile-brand"><span class="auth-mark"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1 4.3 2.7 5.8-.2 1.3-.8 2.6-1.7 3.6-.2.2 0 .6.3.6 2 0 3.7-.8 4.9-1.7.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8S17.1 3 12 3z"/></svg></span><span class="logo">Itsukis Chat Hub</span></div>
+      <div class="auth-mobile-brand"><span class="auth-mark"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1 4.3 2.7 5.8-.2 1.3-.8 2.6-1.7 3.6-.2.2 0 .6.3.6 2 0 3.7-.8 4.9-1.7.9.2 1.8.3 2.8.3 5.1 0 9-3.6 9-8S17.1 3 12 3z"/></svg></span><span class="logo">VUS Chat Hub</span></div>
       <div class="auth-head">
         <h1 class="only-in">Welcome back</h1><p class="only-in">Sign in to pick up where you left off.</p>
         <h1 class="only-up">Create your account</h1><p class="only-up">Choose a username and you're in. It takes a few seconds.</p>
@@ -235,26 +234,11 @@
       <div class="extras-menu" id="extrasMenu" role="menu" aria-hidden="true">
        <div class="ex-inner">
         <div class="ex-cap"><span>Quick access</span><i></i></div>
-        <a class="ex-item" role="menuitem" tabindex="-1" id="exZoom" href="https://us05web.zoom.us/j/87670585061?pwd=2YkaEaBAUvkqtT21b1aKhGyTkiDZJC.1" target="_blank" rel="noopener noreferrer">
+        <a class="ex-item" role="menuitem" tabindex="-1" id="exZoom" href="https://us05web.zoom.us/j/2711738491?pwd=pb0mpLVhlFOv5kpE0hm0DCqe2HuvFl.1" target="_blank" rel="noopener noreferrer">
           <span class="ex-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="#fff" d="M3 7.5A2.5 2.5 0 0 1 5.5 5h7A2.5 2.5 0 0 1 15 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 3 16.5v-9Zm13.5 3.2 4.1-2.9c.5-.4 1.4-.1 1.4.7v7c0 .8-.9 1.1-1.4.7l-4.1-2.9v-2.6Z"/></svg></span>
-          <span class="ex-txt"><b>Zoom</b><small>Join the video call</small></span>
+          <span class="ex-txt"><b>VUS Zoom</b><small>Join the video call</small></span>
           <span class="ex-go" aria-hidden="true"><svg viewBox="0 0 20 20" width="15" height="15"><path d="M6 14 14 6M8 6h6v6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </a>
-        <div class="ex-group ex-group-voice">
-          <button class="ex-item ex-voice" role="menuitem" tabindex="-1" id="exVoice" type="button">
-            <span class="ex-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0v-5a3 3 0 0 0-3-3Z" fill="#fff" fill-opacity=".25"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5M8.5 20.5h7"/></svg></span>
-            <span class="ex-txt"><b>Voice Channel</b><small><i class="ex-live" id="exVoiceLive"></i><span id="exVoiceSub">Talk with everyone in Global</span></small></span>
-            <span class="ex-go" aria-hidden="true"><svg viewBox="0 0 20 20" width="15" height="15"><path d="m7.5 4.5 5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </button>
-          <div class="ex-warn" role="note">
-            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.8 19.5h18.4L12 3.5Z"/><path d="M12 10v4.2M12 17.4v.1"/></svg>
-            <span><b>Voice Channel</b> doesn't work on school Chromebooks or with ad blockers. On your own device, turn your ad blocker off for this site to use it.</span>
-          </div>
-        </div>
-        <div class="ex-note">
-          <span class="ex-timer" aria-hidden="true"><svg viewBox="0 0 32 32" width="32" height="32"><circle class="tr" cx="16" cy="16" r="12"/><circle class="pr" cx="16" cy="16" r="12" pathLength="100"/></svg><b>30</b></span>
-          <span>Sessions end after <b>30 minutes</b>.<br>Click Zoom again any time to rejoin.</span>
-        </div>
        </div>
       </div>
      </div>
@@ -263,44 +247,26 @@
   </div>
   <div class="home-wrap">
     <div class="home-hero">
-      <div class="logo">Itsukis Chat Hub</div>
+      <div class="logo">VUS Chat Hub</div>
       <div class="home-title">Welcome back, <span id="homeName2" style="color:var(--accent)"></span> 👋</div>
       <div class="home-sub">Where do you want to go?</div>
     </div>
     <div class="options">
-      <button class="opt" id="goGlobal"><div class="ic">🌍</div><h3>Itsukis Chat</h3><p>Global chat and rooms</p><span class="badge hidden" id="annBadge"></span></button>
-      <button class="opt" id="goDMs"><div class="ic">💬</div><h3>Itsuki DMs</h3><p>Private chats and friends</p><span class="badge hidden" id="dmBadge"></span></button>
+      <button class="opt" id="goGlobal"><div class="ic">🌍</div><h3>VUS Chat</h3><p>Global chat and rooms</p><span class="badge hidden" id="annBadge"></span></button>
+      <button class="opt" id="goDMs"><div class="ic">💬</div><h3>VUS DMs</h3><p>Private chats and friends</p><span class="badge hidden" id="dmBadge"></span></button>
       <button class="opt" id="goSettings"><div class="ic">⚙️</div><h3>Settings</h3><p>Style your chat and UI</p></button>
       <button class="opt" id="goGameHubs"><div class="ic">🎮</div><h3>Hubs &amp; Tools</h3><p>Games, apps &amp; links</p></button>
     </div>
     <div class="home-foot">
-      <button class="online-pill" id="homeOnlinePill" type="button" title="Everyone online across Itsuki's Chat, not just this room or DM"><span class="dot"></span><span id="onlineCount">0</span> online</button>
-      <a class="discord-link" href="https://discord.gg/MV8RD9XzvA" target="_blank" rel="noopener noreferrer">Join our Discord</a>
-      <button class="gift-link" id="giftPromoBtn" type="button">🎁 Gift Nitro perks</button>
+      <button class="online-pill" id="homeOnlinePill" type="button" title="Everyone online across VUS Chat, not just this room or DM"><span class="dot"></span><span id="onlineCount">0</span> online</button>
     </div>
   </div>
 
-  <aside class="tqq-side" id="adPromo" aria-label="Advertise here">
-    <div class="tqq-glow"></div>
-    <div class="tqq-card">
-      <div class="tqq-badge"><i></i>NEW · COLLAB</div>
-      <a class="tqq-img" href="https://discord.gg/tqqf" target="_blank" rel="noopener noreferrer" aria-label="Open the TQQ Fan Server">
-        <img src="TQQSERVER.png" alt="TQQ Fan Server" decoding="async" draggable="false">
-        <span style="position:absolute;left:8px;bottom:8px;z-index:4;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em;color:#fff;background:rgba(20,10,50,.62);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">Join the TQQ Fan Server →</span>
-        <i class="tqq-petal" style="--x:10%;--z:8px;--s:6.5s;--d:0s"></i><i class="tqq-petal" style="--x:32%;--z:7px;--s:7.5s;--d:1.6s"></i><i class="tqq-petal" style="--x:55%;--z:9px;--s:6s;--d:3.1s"></i><i class="tqq-petal" style="--x:78%;--z:8px;--s:7.2s;--d:0.8s"></i><i class="tqq-spark" style="left:12%;top:20%;width:12px;height:12px;animation-delay:0.2s"></i><i class="tqq-spark" style="left:84%;top:24%;width:9px;height:9px;animation-delay:1.3s"></i><i class="tqq-spark" style="left:70%;top:74%;width:10px;height:10px;animation-delay:2.2s"></i><i class="tqq-spark" style="left:22%;top:72%;width:8px;height:8px;animation-delay:0.9s"></i>
-      </a>
-      <div class="tqq-title">Want your own <b>AD</b> here?</div>
-      <div class="ad-contact">Add <button type="button" class="ad-user" id="adCopy" title="Tap to copy">@AniItsuki<span class="ad-copy">copy</span></button> on Discord</div>
-      <a class="tqq-join" href="https://discord.gg/tqqf" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg><span>Join Server</span><span class="arr">→</span></a>
-      <a class="tqq-alt" href="https://discord.gg/tqqf" target="_blank" rel="noopener noreferrer">(or https://discord.gg/tqqf)</a>
-    </div>
-  </aside>
 </div>
 
 <!-- ============ CHAT ============ -->
 <div id="chatPage" class="page hidden">
   <div class="chat-layout">
-    <nav class="dl-rail" id="dlRail" aria-label="Servers"></nav>
     <aside class="sidebar" id="sidebar">
       <div class="sb-head">
         <button class="back" id="backHome" title="Home">←</button>
@@ -309,7 +275,6 @@
       </div>
       <div class="sb-list" id="sbList"></div>
       <div class="sb-foot" id="sbFoot"></div>
-      <div class="dl-user" id="dlUser"></div>
     </aside>
     <section class="main">
       <div class="topbar">
@@ -319,18 +284,6 @@
             <span class="mb-badge" id="menuBtnBadge"></span>
           </div>
           <h2 id="chatTitle"></h2>
-        </div>
-        <div class="tb-center">
-          <div class="np" id="np" title="Now playing">
-            <div class="np-ic"><div class="np-eq"><i></i><i></i><i></i></div></div>
-            <div class="np-body">
-              <div class="np-top"><span class="np-name" id="npName"></span><span class="np-left" id="npLeft"></span></div>
-              <div class="np-bar" id="npBar"><div class="np-fill" id="npFill"></div></div>
-            </div>
-            <button class="np-skip" id="npSkip" type="button" title="Skip to next song" aria-label="Skip to next song">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5v15a1 1 0 0 0 1.55.83l10.5-7.5a1 1 0 0 0 0-1.66L6.55 3.67A1 1 0 0 0 5 4.5z"/><rect x="17.5" y="4" width="2.5" height="16" rx="1.2"/></svg>
-            </button>
-          </div>
         </div>
         <div class="tb-right">
           <button class="online-pill hidden" id="topOnlinePill" type="button" title="See who's online" style="margin-left:0"><span class="dot"></span><span id="topOnlinePillText"></span></button>
@@ -374,7 +327,6 @@
         <div class="charcount"><span id="cc">0</span><span id="ccMax">/2000</span></div>
       </div>
     </section>
-    <aside class="dl-members" id="dlMembers" aria-label="Members"></aside>
   </div>
 </div>
 

@@ -12,7 +12,6 @@ window.APP_MANIFEST={
   firebase:{version:"10.12.2",modules:["firebase-app","firebase-auth","firebase-app-check","firebase-database"]},
   css:[
     "01-base.css",
-    "02-now-playing.css",
     "03-form-controls.css",
     "04-layout-background.css",
     "05-auth-home-basics.css",
@@ -28,8 +27,7 @@ window.APP_MANIFEST={
     "15-anti-lag.css",
     "16-rules-modal.css",
     "17-halloween.css",
-    "18-music-profile-cosmetics.css",
-    "22-discord-look.css"
+    "18-music-profile-cosmetics.css"
   ],
   js:[
     "core/firebase-imports.js",
@@ -46,12 +44,9 @@ window.APP_MANIFEST={
     "moderation/bans.js",
     "core/database.js",
     "core/state.js",
-    "features/gift-promo.js",
     "chat/pings.js",
     "core/auto-update.js",
     "core/sound.js",
-    "tools/music-player.js",
-    "tools/now-playing.js",
     "ui/controls.js",
     "ui/navigation.js",
     "auth/auth.js",
@@ -83,7 +78,6 @@ window.APP_MANIFEST={
     "chat/typing-indicator.js",
     "ui/extras-menu.js",
     "ui/liquid-glass.js",
-    "ui/discord-shell.js",
     "ui/context-menu.js",
     "core/boot.js"
   ]
