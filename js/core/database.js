@@ -1434,8 +1434,14 @@ const DB=(()=>{
     async removeMvp(id){
       if(!isOwner(myId))throw new Error('Only owners can remove MVP.');
       id=Number(id);if(!id)throw new Error('Enter a valid user ID.');
-      try{await update(ref(rtdb),{['mvp/'+id]:null,['spinWin/'+id]:null})}
-      catch(e){throw new Error(e.code==='PERMISSION_DENIED'?'Database refused it. Publish the MVP database rules (see SETUP-MVP.md).':'Could not remove MVP: '+(e.code||e.message))}
+      // Revoke the actual role first.  spinWin is only a convenience record;
+      // combining it with the role deletion made the entire removal fail on
+      // older databases whose spinWin rules allow only the account owner.
+      try{await remove(R('mvp/'+id))}
+      catch(e){throw new Error(e.code==='PERMISSION_DENIED'?'Database refused the MVP change. Publish the current database.rules.json in Firebase.':'Could not remove MVP: '+(e.code||e.message))}
+      // Best-effort cleanup. The record has no privileges and may be safely left
+      // to expire if an older published rule denies an owner's cleanup write.
+      try{await remove(R('spinWin/'+id))}catch(_){console.warn('Could not clear retired MVP spin record')}
     },
     /* --- Version history / forced updates --- */
     // The build this tab is actually running, from the <meta name="build-version"> tag

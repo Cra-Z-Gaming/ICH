@@ -74,7 +74,7 @@
     "dmMembers": { ".read": "auth != null", ".write": "auth != null" },
 
     "halloween": { ".read": "auth != null", ".write": "auth != null" },
-    "spinWin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
-    "lastSpin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } }
+    "spinWin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } },
+    "lastSpin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } }
   }
 }

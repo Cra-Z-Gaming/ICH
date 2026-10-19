@@ -283,6 +283,7 @@ function openUserProfile(id,opts){
         <div class="pf-avwrap" style="position:relative;width:fit-content">${av}${online&&!deleted?'<span class="pf-stat" style="position:absolute;bottom:4px;right:4px;width:18px;height:18px;border-radius:50%;background:#3ddc73;box-shadow:0 0 8px #3ddc73;border:3px solid var(--panel)"></span>':''}</div>
         <div class="pf-namerow" style="display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap">
           <h2 style="margin:0;font-size:20px">${deleted?esc(name):fullNameHTML(id,esc(name))}</h2>
+          ${!deleted&&DB.isMvp(id)?'<span class="tag pf-mvp-tag">🏆 MVP</span>':''}
           ${admin&&!owner?'<span class="tag" style="background:#e8503a">Admin</span>':(mod&&!owner?'<span class="tag" style="background:var(--accent)">Mod</span>':'')}
           ${banned?'<span class="tag" style="background:var(--danger)">Banned</span>':''}
         </div>
