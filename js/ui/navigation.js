@@ -23,6 +23,7 @@ function goHome(forceMenu){
   $('#homeAv').outerHTML=avatarHtml(ME,ME.username,'width:34px;height:34px;font-size:14px').replace('class="avatar"','class="avatar" id="homeAv"');
   applyStyle(document.documentElement,ME.settings);
   refreshBadge();
+  if(typeof DiscordRail!=='undefined')DiscordRail.sync();
   // Discord look: land in DMs instead of the main-menu grid (the rail's "Main menu" button / Home passes forceMenu).
   if(!forceMenu&&typeof DiscordLook!=='undefined'&&DiscordLook.on()){openChat('dms');return}
   show('homePage');
@@ -35,6 +36,7 @@ function refreshBadge(){
   refreshAnnPicker();
   $('#onlineCount').textContent=DB.onlineCount();
   refreshMarkRead();
+  if(typeof DiscordRail!=='undefined')DiscordRail.sync();
 }
 $('#homeOnlinePill').onclick=()=>openOnlineModal('Online now',DB.onlineIds());
 

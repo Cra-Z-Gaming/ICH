@@ -55,6 +55,7 @@ function bumpRoomSwitch(){
 }
 function renderChat(){
   ME=DB.currentUser();if(!ME)return;
+  if(typeof DiscordRail!=='undefined')DiscordRail.sync();
   applyStyle();
   const banned=DB.isBanned(ME.id);
   const banner=$('#bannedBanner');

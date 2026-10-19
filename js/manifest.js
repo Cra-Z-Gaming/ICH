@@ -53,6 +53,7 @@ window.APP_MANIFEST={
     "auth/auth.js",
     "ui/modals.js",
     "ui/home.js",
+    "ui/discord-rail.js",
     "features/vip-and-spin.js",
     "ui/sidebar-toggle.js",
     "games/game-hubs.js",

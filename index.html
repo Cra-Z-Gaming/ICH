@@ -6,7 +6,7 @@
 <!-- Bump this string every time you edit and re-publish this file. Connected
      clients poll for a change here and auto-refresh once a new version is live,
      so nobody stays on stale code after a deploy. -->
-<meta name="build-version" content="2026-10-18.03">
+<meta name="build-version" content="2026-10-18.04">
 <title>VUS Chat Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
@@ -267,6 +267,17 @@
 <!-- ============ CHAT ============ -->
 <div id="chatPage" class="page hidden">
   <div class="chat-layout">
+    <nav class="vch-rail" id="vchRail" aria-label="VUS Chat navigation">
+      <button type="button" class="vch-rail-btn" data-rail="dms" title="Direct messages" aria-label="Direct messages"><span class="vch-rail-pill"></span><span class="vch-rail-ic"><svg viewBox="0 0 24 24" width="25" height="25" aria-hidden="true" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></span><span class="vch-rail-badge hidden" id="railDmBadge"></span></button>
+      <div class="vch-rail-sep"></div>
+      <button type="button" class="vch-rail-btn" data-rail="global" title="Global chat" aria-label="Global chat"><span class="vch-rail-pill"></span><span class="vch-rail-ic">🌍</span></button>
+      <button type="button" class="vch-rail-btn" data-rail="rooms" title="Rooms" aria-label="Rooms"><span class="vch-rail-pill"></span><span class="vch-rail-ic">🚪</span></button>
+      <button type="button" class="vch-rail-btn" data-rail="announcements" title="Announcements" aria-label="Announcements"><span class="vch-rail-pill"></span><span class="vch-rail-ic">📢</span><span class="vch-rail-badge hidden" id="railAnnBadge"></span></button>
+      <div class="vch-rail-grow"></div>
+      <button type="button" class="vch-rail-btn" data-rail="hubs" title="Hubs &amp; Tools" aria-label="Hubs and tools"><span class="vch-rail-pill"></span><span class="vch-rail-ic">🎮</span></button>
+      <button type="button" class="vch-rail-btn" data-rail="home" title="Main menu" aria-label="Main menu"><span class="vch-rail-pill"></span><span class="vch-rail-ic"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span></button>
+      <button type="button" class="vch-rail-btn" data-rail="settings" title="Settings" aria-label="Settings"><span class="vch-rail-pill"></span><span class="vch-rail-ic">⚙️</span></button>
+    </nav>
     <aside class="sidebar" id="sidebar">
       <div class="sb-head">
         <button class="back" id="backHome" title="Home">←</button>

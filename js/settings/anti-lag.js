@@ -39,7 +39,10 @@ const AntiLag=(function(){
 const DiscordLook=(function(){
   const KEY='vch.discordLook',de=document.documentElement;
   function on(){return de.classList.contains('discord-look')}
-  function apply(v){de.classList.toggle('discord-look',!!v)}
+  function apply(v){
+    de.classList.toggle('discord-look',!!v);
+    if(typeof DiscordRail!=='undefined')DiscordRail.sync();
+  }
   function set(v){
     v=!!v;apply(v);
     try{localStorage.setItem(KEY,v?'1':'0')}catch(_){}
