@@ -53,7 +53,7 @@
         ".read": "auth != null",
         "$message": {
           ".write": "auth != null && ((!data.exists() && newData.child('senderId').val() === root.child('uidToId/'+auth.uid).val()) || (data.child('senderId').val() === root.child('uidToId/'+auth.uid).val()) || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)",
-          ".validate": "!newData.exists() || (newData.child('senderId').isNumber() && newData.child('text').isString() && newData.child('text').val().length <= 4000 && newData.child('at').isNumber())"
+          ".validate": "!newData.exists() || (newData.child('senderId').isNumber() && newData.child('at').isNumber() && (!newData.child('text').exists() || (newData.child('text').isString() && newData.child('text').val().length <= 4000)) && (newData.child('text').exists() || newData.child('images').hasChildren()))"
         }
       }
     },

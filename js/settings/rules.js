@@ -8,7 +8,6 @@
 
 /* ---------- Rules ---------- */
 const RULES=[
-  {ic:'🚫',hot:true,t:'No talk about VUS',d:'Any talk about <b>VUS</b> will result in up to a <b>ban</b>.'},
   {ic:'🌈',t:'No racism',d:'No racism, slurs, or hate speech toward anyone. Everyone is welcome here.'},
   {ic:'🔞',t:'No NSFW',d:'No NSFW images or messages. Images are scanned automatically: flagged images are deleted and you are <b>muted for 1 hour</b> every time.'},
   {ic:'💗',t:'Be kind',d:'No harassment, bullying, threats, or targeting people. Disagree politely.'},
