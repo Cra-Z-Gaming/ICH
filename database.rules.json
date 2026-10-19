@@ -46,6 +46,7 @@
     "tosAccepted": { "$id": { ".read": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
     "lastRead": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
     "pingSeen": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "rate": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
 
     "messages": {
       "$chat": {
