@@ -25,7 +25,7 @@
       "$name": { ".write": "auth != null && ((!data.exists() && newData.val() === root.child('uidToId/'+auth.uid).val()) || (data.val() === root.child('uidToId/'+auth.uid).val() && !newData.exists()))" }
     },
     "usernameLogin": {
-      ".read": false,
+      ".read": true,
       "$name": { ".write": "auth != null && newData.child('email').isString()" }
     },
 

@@ -37,7 +37,9 @@ const DB=(()=>{
   // MVP: mvp/$id holds the time (ms) the role was granted; true/1 also count. Never expires — only an owner removes it.
   const mvpOn=id=>{const v=C.mvp[Number(id)];return v===true||v===1||(typeof v==='number'&&v>0)};
   const mvpAccess=id=>isOwner(id)||mvpOn(id);
-  const FAKE='@itsuki.local';
+  // Firebase Email/Password requires an email-shaped identifier. For username-only
+  // accounts we create a private internal address; users only ever see their name.
+  const FAKE='@users.vusich-x.local';
 
   function listen(path,cb){
     const u=onValue(R(path),s=>{cb(s.val());if(ready)emit()},err=>console.warn('listen denied',path,err.code));
@@ -568,18 +570,16 @@ const DB=(()=>{
     async createUser({username,email,password}){
       if(!CFG.USERNAME_RE.test(username))throw new Error('Username must be 1-20 chars using 0-9, a-z, A-Z, ".", "_" or "-".');
       if(!usernameAllowed(username))throw new Error('That username isn\'t allowed.');
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))throw new Error('Please enter a real email address.');
       let cred;
-      try{cred=await createUserWithEmailAndPassword(auth,email,password)}
+      try{cred=await createUserWithEmailAndPassword(auth,username.toLowerCase()+FAKE,password)}
       catch(e){throw new Error(authMsg(e))}
       // now signed in: safe to check the username
       if(!(await this.checkUsernameFree(username))){
         try{await deleteUser(cred.user)}catch(_){}
         throw new Error('That username is already taken.');
       }
-      try{await this._finishProfile(cred.user,username,email||null,'password')}
+      try{await this._finishProfile(cred.user,username,null,'password')}
       catch(e){try{await deleteUser(cred.user)}catch(_){}throw e}
-      try{await sendEmailVerification(cred.user)}catch(_){}
       return this.currentUser();
     },
     // Claims the next ID, then writes uidToId -> usernames -> users (order required by the rules)
@@ -630,7 +630,14 @@ const DB=(()=>{
     },
     async login(idf,password){
       let email=idf.trim();
-      if(!email.includes('@'))throw new Error('Sign in with the email address you used when creating your account.');
+      if(!email.includes('@')){
+        const key=email.toLowerCase();
+        let rec;
+        try{rec=(await get(R('usernameLogin/'+key))).val()}
+        catch(e){throw new Error('Could not look up that username: '+(e.code||e.message));}
+        if(!rec||!rec.email)throw new Error('Incorrect username or password.');
+        email=rec.email;
+      }
       try{await signInWithEmailAndPassword(auth,email,password)}
       catch(e){throw new Error(authMsg(e))}
       await new Promise(r=>setTimeout(r,0));   // let onAuthStateChanged fire

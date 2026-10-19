@@ -38,17 +38,17 @@ $('#formIn').onsubmit=async e=>{
 };
 $('#formUp').onsubmit=async e=>{
   e.preventDefault();$('#upErr').textContent='';
-  const u=$('#upUser').value.trim(),em=$('#upEmail').value.trim(),p=$('#upPw').value,p2=$('#upPw2').value;
+  const u=$('#upUser').value.trim(),p=$('#upPw').value,p2=$('#upPw2').value;
   try{
     if(!CFG.USERNAME_RE.test(u))throw new Error('Username must be 1-20 chars: 0-9, a-z, A-Z, ".", "_", "-".');
     if(p.length<CFG.MIN_PW)throw new Error(`Password must be at least ${CFG.MIN_PW} characters.`);
     if(p!==p2)throw new Error('Passwords do not match.');
     const b=e.submitter;if(b)b.disabled=true;
-    const user=await DB.createUser({username:u,email:em,password:p});
+    const user=await DB.createUser({username:u,password:p});
     // show the popup RIGHT AWAY; sign-out happens quietly in the background
     $('#formUp').reset();$('#upUserHint').textContent='';
-    authTab('in');$('#inId').value=em;$('#inPw').value='';
-    modalSignupSuccess(user,!!em);
+    authTab('in');$('#inId').value=user.username;$('#inPw').value='';
+    modalSignupSuccess(user,false);
     DB.signOut().catch(()=>{});
   }catch(err){$('#upErr').textContent=err.message}
   finally{const b=e.submitter;if(b)b.disabled=false}
