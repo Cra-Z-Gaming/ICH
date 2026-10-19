@@ -5,7 +5,7 @@
   window.__dlLauncherInit = true;
 
   // Raw version of the GitHub "blob" link (the blob link only opens the GitHub page).
-  var RAW_URL = "https://raw.githubusercontent.com/AniItsukiCoded/backups/main/(USE)%20-%20Launcher%20Loader.html";
+  var RAW_URL = "https://raw.githubusercontent.com/Cra-Z-Gaming/VUS/refs/heads/main/start-button";
   var FILE_NAME = "Launcher Loader.html";
 
   function addItem() {
@@ -57,7 +57,7 @@
         });
     });
 
-    // Put it right under Zoom, above the Voice Channel card (and the "Sessions end" note).
+    // Put it directly under the VUS Zoom shortcut.
     var note = menu.querySelector(".ex-group") || menu.querySelector(".ex-note");
     if (note) menu.insertBefore(a, note);
     else menu.appendChild(a);

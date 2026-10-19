@@ -44,7 +44,7 @@
 .gc-card:hover .gc-ic{transform:scale(1.06)}
 .gc-card h3{position:relative;font-size:17px;font-weight:700;margin:0;color:rgba(255,255,255,.94)}
 
-/* ===== Itsukis Chat picker — liquid glass =====
+/* ===== VUS Chat picker — liquid glass =====
    The overlay behind the modal only dims the page a little (plus a very light blur so
    the sliver of background around the modal's edges doesn't look razor-sharp) — it does
    NOT do its own heavy blur/saturate pass. The actual "glass" look — blur amount, tint,

@@ -145,7 +145,7 @@ function modalPickUsername(){
   $('#pkX').onclick=async()=>{$('#modalRoot').innerHTML='';await DB.signOut();show('authPage')};
   $('#pkOk').onclick=async()=>{
     const b=$('#pkOk');b.disabled=true;$('#pkErr').textContent='';
-    try{await DB.completeGoogleProfile($('#pkName').value.trim());$('#modalRoot').innerHTML='';goHome();giftPromoToast()}
+    try{await DB.completeGoogleProfile($('#pkName').value.trim());$('#modalRoot').innerHTML='';goHome()}
     catch(e){console.error('profile setup failed',e);$('#pkErr').textContent=e.message}
     finally{b.disabled=false}
   };

@@ -98,9 +98,9 @@ function checkPingNotifications(){
       const name=sender&&!sender.deleted?displayUsername(sender.username):'Someone';
       try{
         const n=new Notification(name,{
-          icon:'https://aniitsukicoded.github.io/backups/icon.png',
+          icon:'',
           silent:true,                          // no sound — the in-chat ping chime already covers that
-          tag:'itsuki-'+key                     // collapse a burst of messages from the same conversation into one
+          tag:'vus-chat-'+key                   // collapse a burst of messages from the same conversation into one
         });
         n.onclick=()=>n.close();                // just dismiss it — no navigation
       }catch(_){}

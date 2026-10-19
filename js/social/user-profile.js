@@ -70,7 +70,7 @@ function modalGiveVip(id,name){
 
 // Click-through profile card: username, avatar, online state, user ID, friend status/actions.
 // Open the DM with someone from anywhere (profile card opened from the home screen, Global Chat, a room...).
-// The old button only swapped the open chat, so it did nothing visible unless you were already inside Itsuki DMs.
+// The old button only swapped the open chat, so it did nothing visible unless you were already inside VUS DMs.
 async function openDmWith(id,modalRoot){
   id=Number(id);
   if(!ME||id===ME.id)return;

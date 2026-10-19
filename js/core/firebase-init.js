@@ -9,7 +9,7 @@
 /* ---------- 2. DB layer (Firebase Realtime Database + Auth) ----------
    Reads are synchronous against a live cache kept fresh by onValue listeners.
    Writes are async and go to Firebase. Security is enforced by the database rules. */
-const firebaseConfig=window.ICH_VUS_FIREBASE_CONFIG;
+const firebaseConfig=window.VCH_FIREBASE_CONFIG;
 if(!firebaseConfig||!firebaseConfig.apiKey||!firebaseConfig.projectId||!firebaseConfig.databaseURL){
   throw new Error('Firebase is not configured. Add settings for a NEW project in js/core/firebase-config.js.');
 }

@@ -226,7 +226,7 @@ function hwIntroShow(replay){
   const card=(i,ic,h,p)=>'<div class="hwi-card hwi-in" style="--n:'+i+'"><div class="hwi-ci">'+ic+'</div><div><b>'+h+'</b><span>'+p+'</span></div></div>';
   const slides=[
     '<div class="hwi-ring hwi-in"><span>🎃</span></div><div class="hwi-h hwi-in" style="--n:1">The Halloween Season Pass is here!</div>'
-      +'<div class="hwi-p hwi-in" style="--n:2">Hang out in Itsukis Chat, level up and unlock spooky badges, glowing name effects and permanent roles. No purchase needed. Just be online.</div>'
+      +'<div class="hwi-p hwi-in" style="--n:2">Hang out in VUS Chat, level up and unlock spooky badges, glowing name effects and permanent roles. No purchase needed. Just be online.</div>'
       +'<div class="hwi-chips hwi-in" style="--n:3"><span class="hwi-chip">🗓️ '+D(HW.S)+' → '+D(HW.E)+'</span><span class="hwi-chip">🏆 '+HW.N+' levels</span><span class="hwi-chip">🎁 Claim until '+D(HW.E+HW.G)+'</span></div>',
     '<div class="hwi-h hwi-in">How it works</div>'
       +card(1,'⏱️','Just be online','You earn 1 minute of progress for every minute you are logged in and connected. No need to click or type, so you can leave it running and go AFK.')
@@ -237,8 +237,8 @@ function hwIntroShow(replay){
       +'<div class="hwi-grid">'+rw(5,'Cobweb','web')+rw(7,'Ghost','ghost')+rw(12,'Witch','witch')+rw(19,'Title','vamp','🧛 Vampire')+rw(23,'Hellfire','hell')+rw(25,'Title','reaper','💀 Reaper')+rw(28,'Title','horse','🎃 Horseman')+rw(30,'Title','royal','👑 Royalty')+'</div>',
     '<div class="hwi-h hwi-in">What\'s new</div>'
       +card(1,'🎃','Halloween theme','Bats, ghosts, fog and cobwebs with an orange and purple look. Turn it off in Settings → Halloween event. It is saved to your account.')
-      +card(2,'🚪','Where is the pass?','Open Itsukis Chat and tap the Halloween Pass banner, or use Settings → Open Halloween Pass.')
-      +card(3,'🔔','Rewards ready','An orange number on the Itsukis Chat button tells you how many rewards are waiting to be claimed.')
+      +card(2,'🚪','Where is the pass?','Open VUS Chat and tap the Halloween Pass banner, or use Settings → Open Halloween Pass.')
+      +card(3,'🔔','Rewards ready','An orange number on the VUS Chat button tells you how many rewards are waiting to be claimed.')
       +card(4,'🐌','Laggy device?','Turn on Anti-lag in Settings to calm the animations.'),
     '<div class="hwi-ring hwi-in"><span>🕯️</span></div><div class="hwi-h hwi-in" style="--n:1">Your clock is ticking</div>'
       +'<div class="hwi-p hwi-in" style="--n:2">You are all set. Keep the tab open, stay active and come back to claim your rewards. You can reopen this guide any time with the <b>?</b> button at the top left of the pass.</div>'

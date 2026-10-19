@@ -119,7 +119,7 @@ html.anti-lag .extras.open .ex-ic::before{animation:none!important}
 
 /* ==========================================================================
    EXTRAS v2 - refreshed item cards. Every row gets its own accent colour (--rgb / --c1 / --c2).
-   The Voice Channel row and its warning live in ONE card (.ex-group) so the warning is clearly about voice.
+   Extra shortcuts are displayed as compact menu cards.
    ========================================================================== */
 .ex-inner{display:flex;flex-direction:column;gap:10px;padding:2px 12px 14px}
 .ex-cap{padding:6px 4px 2px}

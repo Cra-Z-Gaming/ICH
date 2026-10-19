@@ -1,5 +1,5 @@
-/* Local configuration for the new, separate ICH + VUS app. */
-window.ICH_VUS_FIREBASE_CONFIG={
+/* Local configuration for the standalone VUS Chat Hub app. */
+window.VCH_FIREBASE_CONFIG={
   apiKey:'AIzaSyD_JE7TD4HgxxflpVVJcBUP1l5dV06hmTk',
   authDomain:'vusich-x.firebaseapp.com',
   databaseURL:'https://vusich-x-default-rtdb.firebaseio.com',

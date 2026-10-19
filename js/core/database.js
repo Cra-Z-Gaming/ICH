@@ -660,15 +660,6 @@ const DB=(()=>{
       if(myId!=null&&mySessionToken){await get(R('sessions/'+myId)).then(s=>{const v=s.val();if(v&&v.token===mySessionToken)return remove(R('sessions/'+myId))}).catch(()=>{})}
       stopAll();await fbSignOut(auth);myId=null;
     },
-    // Nitro-promo alert: has this account already closed it? (saved at giftPromoSeen/$id)
-    async giftPromoSeen(){
-      if(myId==null)return false;
-      try{return (await get(R('giftPromoSeen/'+myId))).val()===true}catch(_){return false}
-    },
-    async markGiftPromoSeen(){
-      if(myId==null)return;
-      try{await set(R('giftPromoSeen/'+myId),true)}catch(_){}
-    },
     async resetPassword(email){try{await sendPasswordResetEmail(auth,email)}catch(e){throw new Error(authMsg(e))}},
     // Lets a Google-signed-up account also sign in with username/password.
     hasPasswordLogin:()=>!!auth.currentUser?.providerData.some(p=>p.providerId==='password'),

@@ -52,7 +52,6 @@ window.addEventListener('focus',checkForUpdate);
 // build can still get into Moderation > Version control to fix the pin themselves.
 let forcedUpdatePending=false;
 const FORCED_VER_KEY='forcedVerAttempt';
-const OLD_VER_DISCORD='https://discord.gg/dkF4HtXWQ';
 // Best-effort direction check for two "YYYY-MM-DD.N" build labels (what the auto-bumped
 // build-version tag looks like). Version labels are free text an owner can type anything
 // into, so this can't always tell — returns null when either label doesn't match that shape,
@@ -121,7 +120,7 @@ function lockForVersionMismatch(cur){
   overlay.innerHTML=`<div style="max-width:440px;background:#2a1a0d;border:1px solid #6b4a1a;border-radius:16px;padding:28px 24px;color:#ffdca8;box-shadow:0 20px 60px rgba(0,0,0,.5)">
     <div style="font-size:32px;margin-bottom:10px">⚠️</div>
     <div style="font-size:16px;font-weight:700;margin-bottom:10px">You're on ${label}</div>
-    <div style="font-size:13.5px;line-height:1.55;opacity:.92">The site is currently running <b>${esc(cur)}</b>, but this tab loaded <b>${esc(MY_BUILD)||'an unknown build'}</b>. You can't use the chat from here until that's sorted out — please relaunch the website to load the current version, or <a href="${OLD_VER_DISCORD}" target="_blank" rel="noopener noreferrer" style="color:#ffdca8;text-decoration:underline">join the Discord</a> if it keeps happening.</div>
+    <div style="font-size:13.5px;line-height:1.55;opacity:.92">The site is currently running <b>${esc(cur)}</b>, but this tab loaded <b>${esc(MY_BUILD)||'an unknown build'}</b>. Please relaunch the website to load the current version.</div>
     <button class="btn sec small" id="verLockRetry" style="margin-top:18px">Try again</button>
   </div>`;
   document.body.appendChild(overlay);

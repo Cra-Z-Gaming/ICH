@@ -27,15 +27,6 @@
   checkForcedVersion(); // re-evaluate now that ME (and so owner status) is actually known
   if(ME){
     applyStyle(document.documentElement,ME.settings);goHome();
-    // Browsers block audio until the user interacts with the page at least
-    // once — so try immediately (works if this reload came from an in-app
-    // navigation) and otherwise retry on the very first click/keypress.
-    if(ME.settings.music&&ME.settings.music.enabled){
-      MusicPlayer.applyPrefs(ME.settings.music);
-      const retryOnce=()=>{MusicPlayer.applyPrefs(ME.settings.music);document.removeEventListener('click',retryOnce);document.removeEventListener('keydown',retryOnce)};
-      document.addEventListener('click',retryOnce,{once:true});
-      document.addEventListener('keydown',retryOnce,{once:true});
-    }
   }
   else if(DB.hadSessionError()){
     // couldn't confirm the account (network) — do NOT ask for a username; offer a reload instead

@@ -49,7 +49,7 @@ function openChat(mode,section){
   show('chatPage');renderChat();bumpRoomSwitch();
   DB.ensureDmMemberships();
 }
-// Home screen "Itsukis Chat" tile: ask Global Chat vs Rooms instead of assuming Global Chat.
+// Home screen VUS Chat tile: ask Global Chat vs Rooms instead of assuming Global Chat.
 function modalGlobalChoice(){
   $('#modalRoot').innerHTML=`<div class="modal-bg gc-overlay" id="gcBg"><div class="modal gc-modal" style="max-width:760px;text-align:center">
     <div class="gc-grid">

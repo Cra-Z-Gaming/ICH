@@ -36,8 +36,6 @@
   // setup, Halloween popups) have no Cancel/Close button and are left alone.
   function closeTopPanel(){
     if(document.querySelector('.hwi'))return false;                    // Halloween guide handles its own Escape
-    const ga=document.querySelector('#giftAlertBg:not(.closing) .ga-x');   // Gift Nitro promo (saves "seen" on close)
-    if(ga){ga.click();return true}
     const hf=document.getElementById('hfClose');
     if(hf&&document.querySelector('.hub-frame-box')){hf.click();return true}
     const root=document.getElementById('modalRoot');

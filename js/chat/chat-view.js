@@ -66,7 +66,7 @@ function renderChat(){
   const g=view.mode==='global';
   const dlSrv=typeof DiscordShell!=='undefined'&&DiscordShell.serverMode();   // Discord look on desktop: Global Chat/Rooms get a server-style channel list
   const globalOnly=g&&view.section!=='rooms'&&!dlSrv;
-  $('#sbTitle').textContent=g?'Itsukis Chat':'Itsuki DMs';
+  $('#sbTitle').textContent=g?'VUS Chat':'VUS DMs';
   renderOnlinePill(g);
   const sidebar=$('#sidebar'),menuBtn=$('#menuBtn'),menuBtnWrap=$('#menuBtnWrap'),menuBtnIcon=$('#menuBtnIcon'),menuBtnBadge=$('#menuBtnBadge');
   sidebar.classList.toggle('gc-hide',globalOnly);

@@ -25,17 +25,9 @@ const HUB_SECTIONS=[['apps','Apps'],['hubs','Hubs'],['tools','Tools'],['links','
 // Custom entries added by hand (the only things shown in the list).
 const CUSTOM_HUBS=[
   /* ---- apps ---- */
-  {sec:'apps',group:'Apps By Suki',name:'1v1.ARENA',url:'https://raw.githubusercontent.com/v-x-i/other/refs/heads/main/1v1lol%20remake.html',desc:'Sukis remade version of (1v1 lol)',icon:'1v1',color:'lime'},
-  {sec:'apps',group:'Apps By Suki',name:'Chicken Kings Vault',url:'https://raw.githubusercontent.com/v-x-i/other/refs/heads/main/Chicken%20Kings%20Vault%20single.html',desc:'Chicken Kings Vault (Forked - Built in)',icon:'SMT',color:'cyan'},
-  {sec:'apps',group:'Apps By Suki',name:'Sukis Multi Tools',url:'https://raw.githubusercontent.com/v-x-i/other/refs/heads/main/Sukis%20Multi%20Tools%20App.html',desc:'My multi tools app, including over 20 apps! Includes things like calculators, reaction test, and more!',icon:'SMT',color:'lime'},
-  {sec:'apps',group:'Apps By Suki',name:'The Long Hall [Beta Version]',url:'https://raw.githubusercontent.com/AniItsukiCoded/tlh/refs/heads/main/index.html',desc:'Beta version of my game The Long Hall.',icon:'TLH',color:'red'},
-  {sec:'apps',group:'Apps By Suki',name:'The Long Hall [Multiplayer]',url:'https://raw.githubusercontent.com/AniItsukiCoded/The-Long-Hall-AutoUpd/refs/heads/main/index.html',desc:'The full release version of The Long Hall: the boiled one. Play solo or with friends and try to escape the boiled one.',icon:'TLH',color:'red'},
-  {sec:'apps',group:'Apps By Suki',name:'YouTube Premium',url:'https://raw.githubusercontent.com/AniItsukiCoded/ytfreemium/refs/heads/main/index.html',desc:'Unblocked, ad-free version of YouTube (PremiumTube).',icon:'YT',color:'red'},
   {sec:'apps',group:'Other',name:'MZK',url:'https://raw.githubusercontent.com/Cra-Z-Gaming/VUS/refs/heads/main/MZK',desc:'MZK app.',icon:'MZK',color:'violet'},
   {sec:'apps',group:'Other',name:"Statik",url:"https://raw.githubusercontent.com/Cra-Z-Gaming/VUS/refs/heads/main/Statik/index.html",desc:"Basically Instagram, but only images and/or text.",icon:"SK",color:"blue"},
   {sec:'apps',group:'Other',name:'VUS Chat Modded',url:'https://raw.githubusercontent.com/jace01b-web/VUS-Modded/refs/heads/main/index.html',desc:'Modded version of VUS Chat, featuring a mod menu and new UI.',icon:'VC',color:'orange'},
-  {sec:'apps',group:'Other',name:'VUS Hub Modded',url:'https://raw.githubusercontent.com/AniItsukiCoded/VUS-Hub-Modded/refs/heads/main/VUSHubModded.html',desc:'Modded version of VUS Hub.',icon:'VM',color:'orange'},
-  {sec:'apps',group:'Other',name:'Tuff Client',url:'https://raw.githubusercontent.com/AniItsukiCoded/Tuffclient-by-Dicestacks88/refs/heads/main/index.html',desc:'Eaglercraft Tuff client by Dicestack88.',icon:'TLH',color:'red'},
   /* ---- hubs ---- */
   {sec:"hubs",name:"BestSpark",url:"https://theres-a.mcdonalds-in-the-pentagon.com/",desc:"A collection of game hubs plus original games made by the community.",icon:"BS",color:"lime"},
   {sec:"hubs",name:"CalcSolver",url:"https://calcsolver.net/",desc:"Looks like a calculator site. Turn on Code mode, then tap (0) four times to open the game hub.",icon:"CS",color:"grey"},
@@ -144,8 +136,8 @@ function closeGameHubs(){
 async function loadHubs(){
   if(_hubData){renderHubList();return}
   try{
-    // VUS is the source of truth for this catalog. ICH supplies the shell, search
-    // and viewer; VUS can add or remove entries without a separate ICH release.
+    // VUS is the source of truth for this catalog. VUS Chat Hub supplies the shell,
+    // search and viewer; VUS can add or remove entries without a separate release.
     const catalogUrl='https://raw.githubusercontent.com/Cra-Z-Gaming/VUS/refs/heads/main/apps.json';
     const r=await fetch(catalogUrl+'?v='+Date.now(),{cache:'no-store'});
     if(!r.ok)throw new Error('Catalog HTTP '+r.status);

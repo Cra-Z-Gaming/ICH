@@ -88,16 +88,16 @@ function openSettings(fromChat){
             <div style="font-weight:600;font-size:14px">Discord look</div>
             <div class="hint" style="margin-top:2px">Off by default. Makes the whole site feel like Discord: it opens straight into your DMs, with a server-style bar on the left, a Friends page, a user panel, flat panels and plain message rows instead of chat bubbles. The main-menu ad is hidden and your custom background is covered while it's on. Saved to your account, so it follows you to every device.</div>
           </div>
-          <label class="switch"><input type="checkbox" id="sDiscordLook" ${DiscordLook.on()?'checked':''}><span class="slider"></span></label>
+          <label class="switch"><input type="checkbox" disabled><span class="slider"></span></label>
         </div>
         <div style="margin-top:12px"><button type="button" class="btn sec small" id="sLookAsk">Choose Normal or Discord again…</button></div>
       </div>
       <div class="set-card hidden" id="dlThemeCard">
         <div class="section-h" style="margin-top:0">🎨 Theme</div>
         <div class="dl-sub" style="margin-top:0">Default Themes</div>
-        <div class="dl-themes" id="dlDefaultThemes">${DiscordLook.themes().filter(t=>t.group==='default').map(t=>`<button type="button" class="dl-sw${DiscordLook.theme()===t.id?' active':''}" data-dl-theme="${t.id}" title="${esc(t.name)}" aria-label="${esc(t.name)} theme"><span class="dl-sw-c" style="background:${t.sw}"></span><span class="dl-sw-l">${esc(t.name)}</span></button>`).join('')}</div>
+        <div class="dl-themes" id="dlDefaultThemes"></div>
         <div class="dl-sub">Color Themes</div>
-        <div class="dl-themes" id="dlColorThemes">${DiscordLook.themes().filter(t=>t.group==='color').map(t=>`<button type="button" class="dl-sw${DiscordLook.theme()===t.id?' active':''}" data-dl-theme="${t.id}" title="${esc(t.name)}" aria-label="${esc(t.name)} theme"><span class="dl-sw-c" style="background:${t.sw}"></span><span class="dl-sw-l">${esc(t.name)}</span></button>`).join('')}</div>
+        <div class="dl-themes" id="dlColorThemes"></div>
         <div class="hint" style="margin-top:6px">Themes apply to the whole site while Discord look is on. Bubble colors, roundness, backgrounds and glass/opacity settings are hidden in Discord look. Saved to your account.</div>
       </div>
       <div class="set-card dl-hide">
@@ -289,7 +289,7 @@ function openSettings(fromChat){
         <div class="actions" style="justify-content:flex-start;margin-top:10px">
           <button class="btn" id="modVerGo">Force everyone onto this version</button>
         </div>
-        <div class="hint" style="margin-top:8px">Pins this label as the site's canonical version. Every signed-in client compares its own build against it live — non-owners on a mismatched build get fully locked out of the app (can't read or do anything) until they're back on the right version, with a screen telling them to relaunch the website or join the Discord. Owners are exempt from that lock (you'll only get a small non-blocking heads-up) so you can still get in here to fix the pin even if your own tab is mismatched. Make sure the new file is actually live first: pushing a version nobody's build matches yet will leave every non-owner locked out until a matching build actually goes live.</div>
+        <div class="hint" style="margin-top:8px">Pins this label as the site's canonical version. Every signed-in client compares its own build against it live — non-owners on a mismatched build are locked out until they relaunch the website with the matching version. Owners are exempt so they can still fix the pin. Make sure the new file is actually live first: pushing a version nobody's build matches yet will leave every non-owner locked out until a matching build actually goes live.</div>
         <div class="section-h" style="margin-top:16px;font-size:13px">History</div>
         <div id="modVerHistory" style="display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto"></div>
       </div>`:''}
@@ -524,7 +524,7 @@ function openSettings(fromChat){
     pinnedEl.textContent=cur||'not pinned yet';
     if(!cur)hintEl.textContent='';
     else if(cur===MY_BUILD)hintEl.textContent="You're up to date.";
-    else hintEl.innerHTML=(isOwner(ME.id)?'Your build doesn\'t match the pinned version. You\'re an owner, so you\'re not locked out — ':'You\'re on a different version than what\'s live — ')+'you can <a href="#" id="aboutRefreshNow">refresh now</a>, or try relaunching the website, or <a href="'+OLD_VER_DISCORD+'" target="_blank" rel="noopener noreferrer">join the Discord</a>.';
+    else hintEl.innerHTML=(isOwner(ME.id)?'Your build doesn\'t match the pinned version. You\'re an owner, so you\'re not locked out — ':'You\'re on a different version than what\'s live — ')+'you can <a href="#" id="aboutRefreshNow">refresh now</a> or relaunch the website.';
     $$('#aboutRefreshNow')&&($$('#aboutRefreshNow').onclick=e=>{e.preventDefault();location.reload();});
   }
   renderAboutTab();
@@ -996,7 +996,7 @@ function fontKeys(){
   return k;
 }
 const CustomFont=(function(){
-  const FACE='ICHCustomFont',DEFAULT_HINT='Paste a font link, or upload a font file (.zip, .ttf, .otf, .woff, .woff2) from your device.';
+  const FACE='VCHCustomFont',DEFAULT_HINT='Paste a font link, or upload a font file (.zip, .ttf, .otf, .woff, .woff2) from your device.';
   let family=FACE,loadedUrl='',face=null,linkEl=null,timer=0,installed=false,seq=0;
   function isGoogle(u){try{return new URL(u).hostname==='fonts.googleapis.com'}catch(_){return false}}
   function gFamily(u){
@@ -1153,7 +1153,7 @@ async function readFontFile(file){
   const m=/\.(woff2|woff|ttf|otf)$/i.exec(name);
   if(!m)throw new Error('Pick a .zip, .ttf, .otf, .woff or .woff2 file.');
   if(bytes.length>MAX)throw new Error('That font is too big ('+Math.round(bytes.length/1000)+' KB, max 150 KB). Try a .woff2 version or a smaller font.');
-  try{await new FontFace('ICHTest',bytes.slice().buffer).load()}catch(_){throw new Error('That file isn’t a usable font.')}
+  try{await new FontFace('VCHTest',bytes.slice().buffer).load()}catch(_){throw new Error('That file isn’t a usable font.')}
   const mime={woff2:'font/woff2',woff:'font/woff',ttf:'font/ttf',otf:'font/otf'}[m[1].toLowerCase()];
   return {name:name.slice(0,60),count,dataUrl:'data:'+mime+';base64,'+bytesToB64(bytes)};
 }

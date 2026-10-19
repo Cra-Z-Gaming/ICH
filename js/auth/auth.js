@@ -32,7 +32,7 @@ $('#upUser').addEventListener('input',e=>{
 $('#formIn').onsubmit=async e=>{
   e.preventDefault();$('#inErr').textContent='';
   const b=e.submitter;if(b)b.disabled=true;
-  try{await DB.login($('#inId').value.trim(),$('#inPw').value);goHome();giftPromoToast()}
+  try{await DB.login($('#inId').value.trim(),$('#inPw').value);goHome()}
   catch(err){$('#inErr').textContent=err.message}
   finally{if(b)b.disabled=false}
 };
@@ -56,6 +56,6 @@ $('#formUp').onsubmit=async e=>{
 $('#googleBtn').onclick=async()=>{
   try{
     const r=await DB.googleSignIn();
-    if(r.needsProfile){show('authPage');modalPickUsername()}else{goHome();giftPromoToast()}
+    if(r.needsProfile){show('authPage');modalPickUsername()}else{goHome()}
   }catch(err){toast(err.message,'bad')}
 };

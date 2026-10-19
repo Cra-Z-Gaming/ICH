@@ -32,10 +32,10 @@
     "owners": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
     "admin": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
     "mods": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
-    "vip": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
-    "mvp": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
-    "roles": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
-    "flair": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
+    "vip": { ".read": "auth != null", "$id": { ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } },
+    "mvp": { ".read": "auth != null", "$id": { ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } },
+    "roles": { ".read": "auth != null", "$id": { ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } },
+    "flair": { ".read": "auth != null", "$id": { ".write": "auth != null && (root.child('idToUid/'+$id).val() === auth.uid || root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1)" } },
     "banned": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
     "muted": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
     "modSettings": { ".read": "auth != null", ".write": "auth != null && root.child('owners/'+root.child('uidToId/'+auth.uid).val()).val() === 1" },
@@ -73,8 +73,7 @@
     "dmMembers": { ".read": "auth != null", ".write": "auth != null" },
 
     "halloween": { ".read": "auth != null", ".write": "auth != null" },
-    "voice": { ".read": "auth != null", ".write": "auth != null" },
-    "spinWin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } },
-    "lastSpin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null" } }
+    "spinWin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } },
+    "lastSpin": { "$id": { ".read": "auth != null && root.child('idToUid/'+$id).val() === auth.uid", ".write": "auth != null && root.child('idToUid/'+$id).val() === auth.uid" } }
   }
 }

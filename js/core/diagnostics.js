@@ -25,7 +25,7 @@ console.log=function(...a){_capture(...a);_origConsoleLog.apply(console,a)};
 console.warn=function(...a){_capture(...a);_origConsoleWarn.apply(console,a)};
 console.error=function(...a){_capture(...a);_origConsoleError.apply(console,a)};
 /* =====================================================================
-   ITSUKI CHAT
+   VUS CHAT HUB
    Structure:
      1. Config + validation
      2. DB layer (Firebase Realtime Database + Auth)
